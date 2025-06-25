@@ -1,0 +1,724 @@
+---
+// Astro Frontmatter (JavaScript/TypeScript run at build time)
+// No server-side dynamic data needed for this specific landing page structure,
+// but you could define variables here if necessary.
+const pageTitle = "BadCompany - Clean The World";
+const orbitronFontFamily = "'Orbitron', sans-serif"; // For potential inline use if needed
+const spaceMonoFontFamily = "'Space Mono', monospace"; // For potential inline use if needed
+---
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{pageTitle}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <style is:global>
+        /* ==== CSS FROM badcompany.css ==== */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Mono', monospace; /* Base font */
+            background: #0a0a0a;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        /* Animated background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, #ff6b35 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, #f7931e 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, #00ff41 0%, transparent 70%),
+                        linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            opacity: 0.3;
+            z-index: -1;
+            animation: pulse 8s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+        
+        /* Logo */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            /* margin-bottom: 20px; /* Applied differently in header/footer */
+        }
+        
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 0 20px rgba(255, 107, 53, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { box-shadow: 0 0 20px rgba(255, 107, 53, 0.5); }
+            to { box-shadow: 0 0 30px rgba(255, 107, 53, 0.8); }
+        }
+        
+        .logo-icon::before {
+            content: "☢";
+            font-size: 30px;
+            color: #0a0a0a;
+            animation: spin 4s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 2.5rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .logo-subtext {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            color: #ff6b35;
+            margin-top: -5px;
+            letter-spacing: 2px;
+        }
+        
+        /* Header */
+        header {
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            z-index: 100;
+        }
+
+        header .logo { /* Specific margin for header logo */
+             justify-content: center; /* As per JSX for consistency, can be adapted */
+             margin-bottom: 20px;
+        }
+        
+        nav {
+            margin-top: 30px;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            padding: 10px 20px;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+        
+        nav a:hover::before {
+            left: 0;
+        }
+        
+        nav a:hover {
+            color: #0a0a0a;
+            border-color: #ff6b35;
+        }
+        
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+        }
+        
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
+            animation: slideDown 1s ease-out;
+        }
+        
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .tagline {
+            font-size: 1.5rem;
+            color: #ff6b35;
+            margin-bottom: 30px;
+            font-style: italic;
+            animation: slideUp 1s ease-out 0.3s both;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .cta-button-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-top: 20px; /* Aligns with hero paragraph margin */
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            color: #0a0a0a;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+            animation: bounce 2s ease-in-out infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        .cta-button:hover {
+            /* transform: translateY(-5px); */ /* Animation handles this, can remove or adjust */
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.5);
+        }
+
+        .cta-tooltip {
+            visibility: hidden;
+            width: 220px; /* Adjusted width */
+            background-color: #ff6b35;
+            color: #0a0a0a;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%; /* Position above the button */
+            left: 50%;
+            margin-left: -110px; /* Center the tooltip (half of width) */
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+            font-size: 0.9rem;
+            font-family: 'Space Mono', monospace; /* Ensure font consistency */
+            pointer-events: none; /* So it doesn't interfere with button hover */
+        }
+
+        .cta-button-wrapper:hover .cta-tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .features h2 {
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 60px;
+            color: #ff6b35;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.2);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .feature-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #ff6b35; /* Applied from .features h2, but can be specific */
+        }
+        
+        /* Screenshots Section */
+        .screenshots {
+            padding: 100px 20px;
+            background: rgba(0, 0, 0, 0.3); /* Subtle background change */
+        }
+        
+        .screenshots h2 {
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 60px;
+            color: #00ff41; /* Green accent for this section */
+        }
+        
+        .screenshot-placeholder {
+            max-width: 800px;
+            margin: 0 auto;
+            height: 450px; /* Placeholder height */
+            background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+            border: 2px solid #ff6b35;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column; /* To stack text elements */
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem; /* Base size for placeholder text */
+            color: #888;
+            position: relative;
+            overflow: hidden;
+            text-align: center; /* For multi-line text */
+        }
+        
+        .screenshot-placeholder::before { /* Scanline effect */
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 107, 53, 0.1), transparent);
+            animation: scan 3s linear infinite;
+        }
+        
+        @keyframes scan {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .loading-animation-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: #ff6b35;
+            margin-bottom: 10px;
+            animation: blink 1.5s linear infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        /* Footer */
+        footer {
+            padding: 50px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 107, 53, 0.3);
+            margin-top: 100px; /* Space before footer */
+        }
+        
+        .social-links {
+            margin: 30px 0;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            margin: 0 15px;
+            color: #ff6b35;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: #f7931e;
+            transform: scale(1.2);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .tagline { font-size: 1.2rem; }
+            .logo-text { font-size: 2rem; } /* Adjust if header logo also needs this */
+            nav ul { flex-direction: column; gap: 15px; }
+            .features-grid { grid-template-columns: 1fr; } /* Stack feature cards */
+            .screenshot-placeholder { height: 300px; font-size: 1.2rem; }
+        }
+        
+        /* Glitch Effect for Mr. Crashburgh */
+        .glitch {
+            position: relative;
+            color: #ff6b35; /* Default color, can be overridden by h3 */
+            font-family: 'Orbitron', sans-serif; /* Ensure Orbitron font for glitch */
+            font-weight: 700;
+            /* animation: glitch-static 2s infinite; Removed static glitch for JS controlled one */
+        }
+        
+        /* Removed @keyframes glitch to avoid conflict with JS-driven glitch effect on text-shadow */
+
+        /* Styles for Crashburgh quote button and display */
+        .crashburgh-quote-button {
+            background-color: #ff6b35;
+            color: #0a0a0a;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .crashburgh-quote-button:hover {
+            background-color: #f7931e;
+            transform: scale(1.05);
+        }
+
+        .crashburgh-quote-display {
+            margin-top: 15px;
+            color: #f7931e; /* A prominent color for the quote */
+            font-style: italic;
+            min-height: 2.8em; /* To prevent layout shift, allows for two lines */
+            font-size: 0.9em;
+            line-height: 1.4;
+            /* background: rgba(0,0,0,0.2); */ /* Optional subtle background */
+            /* padding: 10px; */
+            /* border-left: 3px solid #ff6b35; */
+            transition: opacity 0.5s ease-in-out;
+        }
+    </style>
+</head>
+
+<body> <div class="bg-animation"></div>
+
+    <header>
+        <div class="logo">
+            <div class="logo-icon"></div>
+            <div>
+                <div class="logo-text">BADCOMPANY</div>
+                <div class="logo-subtext">CLEAN THE WORLD</div>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#screenshots">Screenshots</a></li>
+                <li><a href="#news">News</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <h1>Welcome to Corporate Hell</h1>
+            <p class="tagline">"Your job is terrible. So are your tools. Good luck!"</p>
+            <p style="font-size: 1.2rem; margin: 30px 0; max-width: 800px; margin-left: auto; margin-right: auto;">
+                In a corporate-destroyed, post-nuclear hellscape, you're a disposable cleaner for the worst company
+                ever. Armed with defective gear and dark humor, survive while "cleaning" absurd hazards—or become
+                part of the mess.
+            </p>
+            <div class="cta-button-wrapper">
+                <a href="#" class="cta-button">
+                    WISHLIST ON STEAM
+                </a>
+                <span class="cta-tooltip">Your soul is now company property! (Terms and Conditions apply)</span>
+            </div>
+        </section>
+
+        <section class="features" id="features">
+            <h2>Why You'll Love Being Exploited</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🧽</span>
+                    <h3>Chaotic Cleaning</h3>
+                    <p>
+                        Use absurd tools like radioactive vacuum cleaners and mutant-freezing sprays. The Mega Mop 3000™ might
+                        explode, but hey—that's not your problem!
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">☢️</span>
+                    <h3>Dynamic Hazards</h3>
+                    <p>
+                        Random nuclear strikes, sanity-draining Screechers, and bumbling coworkers who throw grenades at you.
+                        Just another day at BadCompany!
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🤖</span>
+                    <h3>Mr. Crashburgh</h3>
+                    <p class="glitch"> {/* Orbitron font is applied by .glitch via CSS or inherited h3 styling */}
+                        Your holographic AI manager who mocks your failures and celebrates your "cost-effective
+                        deaths." He's watching... always watching.
+                    </p>
+                    <button class="crashburgh-quote-button">
+                        Get Insulted!
+                    </button>
+                    <p class="crashburgh-quote-display"></p> {/* Quote will appear here */}
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🏭</span>
+                    <h3>Corporate Satire</h3>
+                    <p>
+                        A biting critique of corporate greed wrapped in dark humor. Experience the joy of being Employee #02937
+                        in a company that values profits over people!
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🎮</span>
+                    <h3>Survival Gameplay</h3>
+                    <p>
+                        Manage your suit health, sanity meter, and tool durability while navigating toxic wastelands. Death is
+                        cheap—your replacement is cheaper!
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🌍</span>
+                    <h3>Post-Apocalyptic World</h3>
+                    <p>
+                        Explore the ruins of 2084 where corporations rule and chaos reigns. Uncover conspiracies or just try not
+                        to explode. Your choice!
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="screenshots" id="screenshots">
+            <h2>Screenshots & Gameplay</h2>
+            <div class="screenshot-placeholder">
+                <div class="loading-animation-text">LOADING DATA_CORRUPTED_</div>
+                <p style="font-size: 2rem; margin-bottom: 20px;">🚧 UNDER CONSTRUCTION 🚧</p>
+                <p>Screenshots coming soon...</p>
+                <p style="margin-top: 20px; font-size: 1rem;">
+                    <em>"We're too busy cleaning radioactive waste to take pretty pictures right now!"</em>
+                    <br/>- Mr. Crashburgh, BadCompany CEO
+                </p>
+            </div>
+        </section>
+
+        <section style="padding: 100px 20px; text-align: center; background: rgba(255, 107, 53, 0.1);" id="news">
+            <h2 style="font-family: 'Orbitron', sans-serif; font-size: 3rem; margin-bottom: 40px; color: #00ff41;">
+                Latest News
+            </h2>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div style="background: rgba(0,0,0,0.5); border-radius: 15px; padding: 30px; margin-bottom: 30px;">
+                    <h3 style="color: #ff6b35; margin-bottom: 15px; font-family: 'Orbitron', sans-serif;">🎮 Development Update #1</h3>
+                    <p style="margin-bottom: 15px;">
+                        <strong>Date:</strong> Coming Soon
+                    </p>
+                    <p>
+                        We're hard at work bringing you the most dysfunctional corporate experience ever created. Stay
+                        tuned for updates on our "revolutionary" cleaning mechanics and Mr. Crashburgh's latest
+                        insults!
+                    </p>
+                </div>
+                <div style="background: rgba(0,0,0,0.5); border-radius: 15px; padding: 30px;">
+                    <h3 style="color: #ff6b35; margin-bottom: 15px; font-family: 'Orbitron', sans-serif;">📢 Pre-Alpha Announcement</h3>
+                    <p style="margin-bottom: 15px;">
+                        <strong>Status:</strong> In Development
+                    </p>
+                    <p>
+                        BadCompany: Clean The World is currently in pre-production. We're assembling our team of corporate
+                        victims—er, developers—to bring this toxic vision to life!
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="logo" style="justify-content: center; margin-bottom: 30px;">
+            <div class="logo-icon"></div>
+            <div>
+                <div class="logo-text" style="font-size: 2rem;"> {/* Slightly smaller logo text in footer */}
+                    BADCOMPANY
+                </div>
+                <div class="logo-subtext">CLEAN THE WORLD</div>
+            </div>
+        </div>
+
+        <div class="social-links">
+            <a href="#" title="Steam">🎮</a>
+            <a href="#" title="Twitter">🐦</a>
+            <a href="#" title="Discord">💬</a>
+            <a href="#" title="YouTube">📺</a>
+        </div>
+
+        <p style="margin: 20px 0; color: #888;">
+            © 2024 BadCompany Studios. All rights reserved.
+            <br/>
+            <em>"Remember: Safety is our third priority!"</em>
+        </p>
+
+        <p style="font-size: 0.9rem; color: #666; max-width: 600px; margin: 0 auto;">
+            BadCompany: Clean The World is a work of fiction. Any resemblance to actual corporations, nuclear disasters,
+            or exploitative employment practices is purely coincidental... probably.
+        </p>
+    </footer>
+
+    <script>
+        const crashburghQuotes = [
+            "Remember, safety is our third priority... after profits and my bonus.",
+            "Did you break something expensive? Don't worry, it's coming out of your non-existent paycheck.",
+            "Employee #02937, you're exceeding my lowest expectations. Barely.",
+            "Is that initiative I see? Stamp it out immediately. It's not cost-effective.",
+            "Your performance has been noted. And subsequently ignored.",
+            "If you think your job is bad, try managing you lot.",
+            "Another day, another dollar... for me. For you? Experience, mostly.",
+            "Keep up the mediocre work. It's... consistent.",
+        ];
+        let crashburghQuoteDisplayElement: Element | null;
+        let glitchIntervalId: string | number | NodeJS.Timeout | undefined;
+
+        function getNewCrashburghQuote() {
+            const randomIndex = Math.floor(Math.random() * crashburghQuotes.length);
+            const newQuote = crashburghQuotes[randomIndex];
+            if (crashburghQuoteDisplayElement) {
+                crashburghQuoteDisplayElement.textContent = `"${newQuote}"`;
+                // Optional: force re-flow for animation if any
+                // crashburghQuoteDisplayElement.style.display = 'none';
+                // crashburghQuoteDisplayElement.offsetHeight; //offsetHeight for reflow
+                // crashburghQuoteDisplayElement.style.display = 'block';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Assign elements for Crashburgh quotes
+            crashburghQuoteDisplayElement = document.querySelector(".crashburgh-quote-display");
+            const quoteButton = document.querySelector(".crashburgh-quote-button");
+            
+            if (quoteButton) {
+                quoteButton.addEventListener("click", getNewCrashburghQuote);
+            }
+            // Optionally, display an initial quote or leave it blank
+            // getNewCrashburghQuote(); // Call once to display an initial quote if desired
+
+            // Smooth scrolling for navigation
+            document.querySelectorAll('nav a[href^="#"]').forEach((anchor) => {
+                anchor.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    const href = anchor.getAttribute("href");
+                    if (href && href !== "#") { // Ensure href is not just "#"
+                        try {
+                            const target = document.querySelector(href);
+                            if (target) {
+                                target.scrollIntoView({
+                                    behavior: "smooth",
+                                    block: "start",
+                                });
+                            }
+                        } catch (error) {
+                            console.error("Error scrolling to target:", href, error);
+                        }
+                    }
+                });
+            });
+
+            // Add random glitch effects to Mr. Crashburgh mentions
+            const glitchElements = document.querySelectorAll(".glitch");
+            glitchIntervalId = setInterval(() => {
+                glitchElements.forEach((el) => {
+                    if (Math.random() < 0.1) { // 10% chance every interval
+                        (el as HTMLElement).style.textShadow = "2px 0 #ff0000, -2px 0 #00ff00";
+                        setTimeout(() => {
+                            (el as HTMLElement).style.textShadow = "none";
+                        }, 100);
+                    }
+                });
+            }, 2000);
+
+            // Easter egg: console message from Mr. Crashburgh
+            console.log(
+                "%c🤖 Mr. Crashburgh here! %c\nI see you're inspecting our code. Very suspicious behavior, Employee. \nRemember: Corporate espionage is punishable by eternal overtime! \n- Management",
+                "color: #ff6b35; font-weight: bold; font-size: 16px;",
+                "color: #f7931e; font-size: 12px;"
+            );
+        });
+
+        // Cleanup interval if the page is unloaded (though browser usually handles this for setInterval)
+        // More relevant if using Astro's View Transitions or SPA-like behavior.
+        window.addEventListener('beforeunload', () => {
+            if (glitchIntervalId) {
+                clearInterval(glitchIntervalId);
+            }
+        });
+    </script>
+</body>
+</html>
