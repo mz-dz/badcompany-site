@@ -1,11 +1,32 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+	---
+// Astro Frontmatter (JavaScript/TypeScript run at build time)
+// No server-side dynamic data needed for this specific landing page structure,
+// but you could define variables here if necessary.
+const pageTitle = "BadCompany - Clean The World";
+const orbitronFontFamily = "'Orbitron', sans-serif"; // For potential inline use if needed
+const spaceMonoFontFamily = "'Space Mono', monospace"; // For potential inline use if needed
+---
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{pageTitle}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta name="description"
+        content="BadCompany: Clean The World – A satirical, post-apocalyptic cleaning simulator where you survive corporate chaos with dark humor and absurd tools." />
+
+  <meta name="keywords"
+        content="BadCompany, Clean The World, post-apocalyptic, cleaning simulator, dark humor, corporate satire, survival game, horror, indie game, absurd tools, Mr. Crashburgh, nuclear wasteland, comedy, satire" />
+
+  <meta name="author" content="BadCompany Studios" />
+  <meta name="generator" content={Astro.generator} />
 	</head>
 	<body>
 		<slot />
