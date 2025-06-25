@@ -1,16 +1,20 @@
 const pageTitle = "Welcome to Bad Company"; 
 
 <!doctype html>
+<!doctype html>
 <html lang="en">
 	<head>
-	<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="BadCompany: Clean The World - A satirical, post-apocalyptic cleaning simulator where you survive corporate chaos with dark humor and absurd tools.">
-    <meta name="keywords" content="BadCompany, Clean The World, post-apocalyptic, cleaning simulator, dark humor, corporate satire, survival game,horror, indie game,funny, absurd tools, Mr. Crashburgh, nuclear wasteland, dysfunctional corporate experience,comady, satire, indie game, survival horror, dysfunctional corporate experience">
-    <meta name="author" content="BadCompany Studios">
-    <link rel="icon" href="logo.ico" type="image/x-icon">
-    <title>{pageTitle}</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="BadCompany: Clean The World - A satirical, post-apocalyptic cleaning simulator where you survive corporate chaos with dark humor and absurd tools.">
+		<meta name="keywords" content="BadCompany, Clean The World, post-apocalyptic, cleaning simulator, dark humor, corporate satire, survival game,horror, indie game,funny, absurd tools, Mr. Crashburgh, nuclear wasteland, dysfunctional corporate experience,comady, satire, indie game, survival horror, dysfunctional corporate experience">
+		<meta name="author" content="BadCompany Studios">
 
+		<!-- Correct path to the logo in the public/ directory -->
+		<link rel="icon" href="/logo.ico" type="image/x-icon">
+		
+		<!-- Using the variable defined in the frontmatter -->
+		<title>{pageTitle}</title>
 	</head>
 	<body>
 		<slot />
